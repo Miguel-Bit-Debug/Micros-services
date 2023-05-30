@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICut.API", "ICut.API\ICut.API.csproj", "{6C6D38B6-0CCC-4749-BD07-41185FCA763E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICut.Domain", "ICut.Domain\ICut.Domain.csproj", "{6F015DE2-351B-4B9F-871C-A47D11B62F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICut.CrossCutting", "ICut.CrossCutting\ICut.CrossCutting.csproj", "{72364800-ACA3-4543-895A-AEEFC49A5EE3}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C6D38B6-0CCC-4749-BD07-41185FCA763E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6D38B6-0CCC-4749-BD07-41185FCA763E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6D38B6-0CCC-4749-BD07-41185FCA763E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6D38B6-0CCC-4749-BD07-41185FCA763E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F015DE2-351B-4B9F-871C-A47D11B62F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F015DE2-351B-4B9F-871C-A47D11B62F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F015DE2-351B-4B9F-871C-A47D11B62F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F015DE2-351B-4B9F-871C-A47D11B62F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72364800-ACA3-4543-895A-AEEFC49A5EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72364800-ACA3-4543-895A-AEEFC49A5EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72364800-ACA3-4543-895A-AEEFC49A5EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72364800-ACA3-4543-895A-AEEFC49A5EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
