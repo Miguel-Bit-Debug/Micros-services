@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cache\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Cache.Domain\Cache.Domain.csproj" />
   </ItemGroup>
 
