@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Product.Domain.DTOs.Request;
 using Product.Domain.Interfaces;
+using System.Security.Claims;
 
 namespace Product.API.Controllers
 {
@@ -9,11 +10,19 @@ namespace Product.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly IEventHubExternalService<ProductRequestDTO> _eventHub;
+        private readonly IEventHubExternalService<ProductRequestDTO> _eventHubService;
+        private readonly IProductCacheExternalService _productCacheService;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly string Token;
 
-        public ProductController(IEventHubExternalService<ProductRequestDTO> eventHub)
+        public ProductController(IEventHubExternalService<ProductRequestDTO> eventHub,
+                                 IHttpContextAccessor accessor,
+                                 IProductCacheExternalService productCacheService)
         {
-            _eventHub = eventHub;
+            _eventHubService = eventHub;
+            _accessor = accessor;
+            _productCacheService = productCacheService;
+            Token = _accessor.HttpContext?.Request.Headers["Authorization"]!;
         }
 
         [HttpPost]
@@ -21,17 +30,30 @@ namespace Product.API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState.Select(x => x.Value.Errors).ToList());
+                return BadRequest(ModelState.Select(x => x.Value?.Errors).ToList());
             }
 
-            var user = "teste"; // buscar usuario do token
-            var response = await _eventHub.PublishAsync(user, request);
+            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
+
+            if (user == null)
+            {
+                return BadRequest("Error user does't exists.");
+            }
+
+            var response = await _eventHubService.PublishAsync(user, request, Token);
 
             if (!response.Success)
             {
                 return BadRequest(response);
             }
 
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var response = await _productCacheService.GetAllProducts(Token);
             return Ok(response);
         }
     }

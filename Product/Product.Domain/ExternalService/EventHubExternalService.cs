@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Product.Domain.DTOs.Request;
 using Product.Domain.DTOs.Response;
 using Product.Domain.Interfaces;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Product.Domain.ExternalService
@@ -16,7 +17,7 @@ namespace Product.Domain.ExternalService
         {
             BaseUrl = configuration["EventhubUrl"];
         }
-        public async Task<EventhubMessageResponseDTO> PublishAsync(string user, T message)
+        public async Task<GenericResponse> PublishAsync(string user, T message, string token)
         {
             try
             {
@@ -24,10 +25,11 @@ namespace Product.Domain.ExternalService
                 var eventHubMessage = new EventhubMessageRequestDTO(message.GetType().Name, user, message);
                 var messageSerialized = JsonConvert.SerializeObject(eventHubMessage);
                 var request = new StringContent(messageSerialized, Encoding.UTF8, "application/json");
+                _httpClient.DefaultRequestHeaders.Add("Authorization", token);
 
                 _httpClient.PostAsync($"{BaseUrl}/api/publish", request);
 
-                var response = new EventhubMessageResponseDTO()
+                var response = new GenericResponse()
                 {
                     Message = "Publish message success.",
                     Success = true
@@ -39,7 +41,7 @@ namespace Product.Domain.ExternalService
             }
             catch (Exception ex)
             {
-                var response = new EventhubMessageResponseDTO()
+                var response = new GenericResponse()
                 {
                     Message = $"Publish message failed - {ex.Message}",
                     Success = false

@@ -4,6 +4,6 @@ namespace Product.Domain.Interfaces
 {
     public interface IEventHubExternalService<T> where T : class
     {
-        Task<EventhubMessageResponseDTO> PublishAsync(string user, T message);
+        Task<GenericResponse> PublishAsync(string user, T message, string token);
     }
 }

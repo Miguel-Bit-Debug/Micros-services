@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Product.Domain.ExternalService;
@@ -35,8 +36,10 @@ namespace Product.CrossCutting.DI
             });
 
             builder.Services.AddHttpClient();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             builder.Services.AddScoped(typeof(IEventHubExternalService<>), typeof(EventHubExternalService<>));
+            builder.Services.AddScoped<IProductCacheExternalService, ProductCacheExternalService>();
         }
     }
 }

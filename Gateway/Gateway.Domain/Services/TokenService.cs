@@ -23,7 +23,9 @@ namespace ICut.Domain.Services
                 Subject = new ClaimsIdentity(
                 new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, "teste")
+                    new Claim(ClaimTypes.Name, "teste"),
+                    new Claim(ClaimTypes.Email, "teste@gmail.com"),
+                    new Claim(ClaimTypes.Role, "admin")
                 }),
 
                 SigningCredentials =
