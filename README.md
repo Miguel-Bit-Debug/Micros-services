@@ -3,8 +3,7 @@
 #### Repositório criado para implementar uma arquitetura simples de micro-serviços 
 
 Desenho da arquitetura:
-![arquitetura drawio](https://github.com/Miguel-Bit-Debug/Microsservices/assets/57414379/82135677-981e-4733-b495-c046864face7)
-
+![arquitetura drawio](https://github.com/Miguel-Bit-Debug/Microsservices/assets/57414379/8063739a-53e5-4a73-ac01-45d1f29bf0ed)
 
 #### Tecnologias usadas
   - .NET 6.x
