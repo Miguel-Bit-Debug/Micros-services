@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ICut.CrossCutting\ICut.CrossCutting.csproj" />
+    <ProjectReference Include="..\Gateway.CrossCutting\Gateway.CrossCutting.csproj" />
+    <ProjectReference Include="..\Gateway.Domain\Gateway.Domain.csproj" />
   </ItemGroup>
 
 </Project>

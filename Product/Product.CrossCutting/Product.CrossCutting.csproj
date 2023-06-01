@@ -11,14 +11,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.16" />
-	  <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.16" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.5" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Cache.Domain\Cache.Domain.csproj" />
-	  <ProjectReference Include="..\Cache.InfraData\Cache.InfraData.csproj" />
+	  <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
