@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  EventHubSQSQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      QueueName: EVENTHUB-SQS
+      ReceiveMessageWaitTimeSeconds: 20
+      RedrivePolicy:
+        deadLetterTargetArn:
+          Fn::GetAtt: [EventHubSQSDeadLetterQueue, Arn]
+        maxReceiveCount: 5
+      VisibilityTimeout: 300
+
+  EventHubSQSDeadLetterQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      QueueName: EVENTHUB-SQS-DLQ

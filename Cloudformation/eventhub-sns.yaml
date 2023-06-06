@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  EventHubSNSTopic:
+    Type: "AWS::SNS::Topic"
+    Properties:
+      Subscription:
+        - Endpoint: arn:aws:sqs:us-east-1:221307536465:EVENTHUB-SQS
+          Protocol: sqs
+      TopicName: EVENTHUB-SNS

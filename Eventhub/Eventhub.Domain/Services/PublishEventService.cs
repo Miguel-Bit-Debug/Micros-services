@@ -9,15 +9,15 @@ using Newtonsoft.Json;
 
 namespace Eventhub.Domain.Services
 {
-    public class PublishEventService<T> : IPublishEventService<T> where T : class
+    public class PublishEventService : IPublishEventService
     {
         private readonly string SnsTopicArn;
         private readonly string SnsTopicRegion;
         private readonly AmazonSimpleNotificationServiceClient _sqsClient;
-        private readonly ILogger<T> _logger;
+        private readonly ILogger<PublishEventService> _logger;
 
         public PublishEventService(IConfiguration configuration,
-                            ILogger<T> logger)
+                            ILogger<PublishEventService> logger)
         {
             SnsTopicArn = configuration["SnsTopicArn"]!;
             SnsTopicRegion = configuration["SnsTopicRegion"]!;
@@ -25,16 +25,14 @@ namespace Eventhub.Domain.Services
             _logger = logger;
         }
 
-        public async Task Publish(string user, T message)
+        public async Task Publish(string user, Message message)
         {
             try
             {
-                var content = new Message(message.GetType().Name, user, JsonConvert.SerializeObject(message));
-
-                _logger.LogInformation($"Iniciando envio de evento - usuario {user} - data {DateTime.UtcNow} - message {content.Detail}");
+                _logger.LogInformation($"Iniciando envio de evento - usuario {user} - data {DateTime.UtcNow} - message {message.Detail}");
                 await _sqsClient.PublishAsync(new PublishRequest
                 {
-                    Message = JsonConvert.SerializeObject(content),
+                    Message = message.Detail.ToString(),
                     TopicArn = SnsTopicArn,
                     MessageAttributes = new Dictionary<string, MessageAttributeValue>
                     {
@@ -48,7 +46,7 @@ namespace Eventhub.Domain.Services
                     }
                 });
 
-                _logger.LogInformation($"Evento enviado com sucesso - usuario {user} - data {DateTime.UtcNow} - message {content}");
+                _logger.LogInformation($"Evento enviado com sucesso - usuario {user} - data {DateTime.UtcNow} - message {message.Detail}");
             }
             catch (Exception ex)
             {

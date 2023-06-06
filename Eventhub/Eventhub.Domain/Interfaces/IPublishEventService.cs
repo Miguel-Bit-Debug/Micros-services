@@ -1,7 +1,9 @@
-﻿namespace Eventhub.Domain.Interfaces
+﻿using Eventhub.Domain.Models;
+
+namespace Eventhub.Domain.Interfaces
 {
-    public interface IPublishEventService<T> where T : class
+    public interface IPublishEventService
     {
-        Task Publish(string user, T message);
+        Task Publish(string user, Message message);
     }
 }

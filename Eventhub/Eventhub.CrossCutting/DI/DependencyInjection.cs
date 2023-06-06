@@ -13,7 +13,7 @@ namespace Eventhub.CrossCutting.DI
     {
         public static void AddDependencyInjection(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped(typeof(IPublishEventService<>), typeof(PublishEventService<>));
+            builder.Services.AddScoped<IPublishEventService, PublishEventService>();
             builder.Services.AddHttpClient();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

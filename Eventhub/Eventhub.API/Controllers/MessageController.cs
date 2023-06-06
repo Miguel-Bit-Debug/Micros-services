@@ -7,9 +7,9 @@ namespace Eventhub.API.Controllers
     [Route("api/[controller]")]
     public class MessageController : ControllerBase
     {
-        private readonly IPublishEventService<Message> _publishEvent;
+        private readonly IPublishEventService _publishEvent;
 
-        public MessageController(IPublishEventService<Message> publishEvent)
+        public MessageController(IPublishEventService publishEvent)
         {
             _publishEvent = publishEvent;
         }
