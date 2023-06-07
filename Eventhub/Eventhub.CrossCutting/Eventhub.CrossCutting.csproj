@@ -20,10 +20,6 @@
 	  <ProjectReference Include="..\Eventhub.Domain\Eventhub.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="DI\" />
-	</ItemGroup>
-
 
 
 </Project>

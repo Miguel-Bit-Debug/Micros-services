@@ -1,15 +1,18 @@
 ﻿using Eventhub.Domain.Interfaces;
 using Eventhub.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Eventhub.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
-    public class MessageController : ControllerBase
+    public class PublishController : ControllerBase
     {
         private readonly IPublishEventService _publishEvent;
 
-        public MessageController(IPublishEventService publishEvent)
+        public PublishController(IPublishEventService publishEvent)
         {
             _publishEvent = publishEvent;
         }
@@ -17,7 +20,9 @@ namespace Eventhub.API.Controllers
         [HttpPost]
         public async Task<IActionResult> SendEvent([FromBody] Message message)
         {
-            await _publishEvent.Publish(message.User, message);
+            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
+
+            await _publishEvent.Publish(user, message);
             return Ok();
         }
     }
