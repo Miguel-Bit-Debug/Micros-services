@@ -14,4 +14,6 @@ Desenho da arquitetura:
   - API Gateway
   - JWT
   - API de Eventos
-  - API Cache 
+  - API Cache
+  - Docker
+  - Kubernetes
