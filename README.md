@@ -1,19 +1,30 @@
 # Microsservices
 
-#### Repositório criado para implementar uma arquitetura simples de micro-serviços 
+    Repositório criado para implementar uma arquitetura simples de micro-serviços 
 
-Desenho da arquitetura:
-![arquitetura drawio](https://github.com/Miguel-Bit-Debug/Microsservices/assets/57414379/6451be4e-dd24-40a1-b2ee-9ee9bd50acf5)
+### [Arquitetura Backend](.attachments/arquitetura-backend.drawio.png)
 
-#### Tecnologias usadas
-  - .NET 6.x
-  - AWS SQS/SNS
-  - AWS Lambda
-  - Redis
-  - MongoDB
-  - API Gateway
-  - JWT
-  - API de Eventos
-  - API Cache
-  - Docker
-  - Kubernetes
+
+## Micros-serviços
+  - [Gateway](Gateway/README.md)
+
+  - [Cache](Cache/README.md)
+
+  - [Eventhub](Eventhub/README.md)
+
+  - [Produtos](Product/README.md)
+
+  - [Produtos Lambda](Product.Lambda/README.md)
+
+## Tecnologias usadas
+    - .NET 6.x
+    - AWS SQS/SNS
+    - AWS Lambda
+    - Redis
+    - MongoDB
+    - API Gateway
+    - JWT
+    - API de Eventos
+    - API Cache
+    - Docker
+    - Kubernetes
