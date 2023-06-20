@@ -39,6 +39,7 @@ namespace Cache.CrossCutting.DI
             builder.Services.AddStackExchangeRedisCache(opt =>
             {
                 opt.Configuration = builder.Configuration["HostInstance"];
+                opt.InstanceName = builder.Configuration["InstanceName"];
             });
 
             builder.Services.AddTransient<IMongoDbContext, MongoDbContext>();
