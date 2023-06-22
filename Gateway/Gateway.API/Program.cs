@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using ICut.CrossCutting.DI;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -10,7 +11,8 @@ Log.Logger = new LoggerConfiguration()
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddFluentValidation();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
