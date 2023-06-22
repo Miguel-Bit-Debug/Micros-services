@@ -1,10 +1,12 @@
 ﻿using Gateway.Domain.DTOs.Request;
 using Gateway.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ICut.API.Controllers
 {
     [ApiController]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
@@ -27,7 +29,7 @@ namespace ICut.API.Controllers
 
             if (string.IsNullOrEmpty(tokenLoginAuth))
             {
-                return BadRequest(new { message = "Email or password it's not correct" });
+                return Unauthorized(new { message = "Email or password it's not correct" });
             }
 
             return Ok(tokenLoginAuth);

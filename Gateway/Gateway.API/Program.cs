@@ -1,5 +1,5 @@
 using FluentValidation.AspNetCore;
-using ICut.CrossCutting.DI;
+using Gateway.CrossCutting.DI;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -41,16 +41,15 @@ builder.Services.AddSwaggerGen(c =>
                     new string[] {}
                     }
                 });
-}); builder.AddDependencyInjection();
+}); 
+
+builder.AddDependencyInjection();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseAuthorization();
 

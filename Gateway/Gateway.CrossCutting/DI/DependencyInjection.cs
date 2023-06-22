@@ -11,7 +11,7 @@ using ICut.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ICut.CrossCutting.DI
+namespace Gateway.CrossCutting.DI
 {
     public static class DependencyInjection
     {
