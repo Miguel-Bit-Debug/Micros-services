@@ -1,4 +1,4 @@
-﻿using ICut.Domain.Interfaces;
+﻿using Gateway.Domain.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -16,15 +16,15 @@ namespace ICut.Domain.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken()
+        public string GenerateToken(string username, string email)
         {
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(
                 new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, "teste"),
-                    new Claim(ClaimTypes.Email, "teste@gmail.com"),
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Email, email),
                     new Claim(ClaimTypes.Role, "admin")
                 }),
 
