@@ -22,7 +22,7 @@ namespace ICut.CrossCutting.DI
 
             builder.Services.AddTransient<IValidator<AccountRequestDTO>, AccountRequestValidator>();
             builder.Services.AddScoped(typeof(IEventHubExternalService<>), typeof(EventHubExternalService<>));
-            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IAuthService, AccountService>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<ITokenService, TokenService>();
 

@@ -6,5 +6,6 @@ namespace Gateway.Domain.Interfaces.Repositories
     {
         Task CreateAccount(Account account);
         Task<bool> CheckAccountExists(string email);
+        Task<Account> GetAccountByEmail(string email);
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Gateway.Domain.Interfaces.Services
 {
-    public interface IAccountService
+    public interface IAuthService
     {
         Task<string> CreateAccount(AccountRequestDTO request);
+        Task<string> Login(LoginRequestDTO request);
     }
 }

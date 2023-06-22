@@ -1,7 +1,6 @@
 ﻿using Gateway.Domain.Interfaces.Repositories;
 using Gateway.Domain.Models;
 using Gateway.InfraData.Data;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Gateway.InfraData.Repositories
@@ -25,6 +24,12 @@ namespace Gateway.InfraData.Repositories
             }
 
             return true;
+        }
+
+        public async Task<Account> GetAccountByEmail(string email)
+        {
+            var account = await _collection.Find(x => x.Email == email).FirstOrDefaultAsync();
+            return account;
         }
 
         public async Task CreateAccount(Account account)

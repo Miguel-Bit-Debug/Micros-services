@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Gateway.Domain.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService : IAuthService
     {
         private readonly IAccountRepository _accountRepository;
         private readonly ITokenService _tokenService;
@@ -34,12 +34,12 @@ namespace Gateway.Domain.Services
 
                 var accountExists = await _accountRepository.CheckAccountExists(request.Email);
 
-                if(accountExists)
+                if (accountExists)
                 {
                     return "Account already exists";
                 }
 
-                request.HashPassword(BCrypt.Net.BCrypt.HashPassword(request.Password));
+                request.HashPassword(BCrypt.Net.BCrypt.HashPassword(request.Password, 10));
 
                 var account = new Account(request.Username,
                                           request.Age,
@@ -57,6 +57,26 @@ namespace Gateway.Domain.Services
                 _logger.LogInformation($"erro ao criar a conta. {request.Username} - Erro {ex.Message}");
                 throw ex;
             }
+        }
+
+        public async Task<string> Login(LoginRequestDTO request)
+        {
+            var account = await _accountRepository.GetAccountByEmail(request.Email);
+
+            if (account == null)
+            {
+                return null;
+            }
+
+            var passwordValid = BCrypt.Net.BCrypt.Verify(request.Password, account.Password);
+
+            if (!passwordValid)
+            {
+                return null;
+            }
+
+            var token = _tokenService.GenerateToken(account.Username, account.Email);
+            return token;
         }
     }
 }
