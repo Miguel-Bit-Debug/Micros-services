@@ -12,6 +12,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Gateway.Domain\Gateway.Domain.csproj" />
+	  <ProjectReference Include="..\Gateway.InfraData\Gateway.InfraData.csproj" />
 	</ItemGroup>
 
 </Project>
