@@ -27,6 +27,16 @@ namespace Gateway.Domain.Validators
                 .MinimumLength(3)
                 .WithMessage("Nome deve ser ter no minimo 3 caracteres");
 
+            RuleFor(x => x.Address)
+                .NotEmpty().WithMessage("Endereço deve estar preenchido")
+                .NotNull().WithMessage("Endereço deve estar preenchido")
+                .OverridePropertyName("Endereço");
+
+            RuleFor(x => x.ZipCode)
+                .NotEmpty().WithMessage("CEP deve estar preenchido")
+                .NotNull().WithMessage("CEP deve estar preenchido")
+                .OverridePropertyName("CEP");
+
             RuleFor(x => x.Password)
                 .NotEmpty()
                 .NotNull()

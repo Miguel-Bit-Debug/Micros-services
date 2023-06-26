@@ -44,7 +44,9 @@ namespace Gateway.Domain.Services
                 var account = new Account(request.Username,
                                           request.Age,
                                           request.Email,
-                                          request.Password);
+                                          request.Password,
+                                          request.Address,
+                                          request.ZipCode);
 
                 await _accountRepository.CreateAccount(account);
                 _logger.LogInformation($"Conta criada com sucesso. {request.Username}");

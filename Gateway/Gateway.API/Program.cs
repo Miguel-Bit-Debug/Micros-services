@@ -47,6 +47,13 @@ builder.AddDependencyInjection();
 
 var app = builder.Build();
 
+app.UseCors(opt =>
+{
+    opt.AllowAnyOrigin();
+    opt.AllowAnyHeader();
+    opt.AllowAnyMethod();
+});
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

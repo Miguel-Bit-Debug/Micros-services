@@ -20,6 +20,8 @@ namespace Gateway.CrossCutting.DI
             // HTTP
             builder.Services.AddHttpClient();
 
+            builder.Services.AddCors();
+
             builder.Services.AddTransient<IValidator<AccountRequestDTO>, AccountRequestValidator>();
             builder.Services.AddScoped(typeof(IEventHubExternalService<>), typeof(EventHubExternalService<>));
             builder.Services.AddScoped<IAuthService, AccountService>();

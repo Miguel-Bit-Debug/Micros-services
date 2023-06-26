@@ -32,7 +32,7 @@ namespace ICut.API.Controllers
                 return Unauthorized(new { message = "Email or password it's not correct" });
             }
 
-            return Ok(tokenLoginAuth);
+            return Ok(new { token = tokenLoginAuth });
 
         }
 
@@ -51,7 +51,7 @@ namespace ICut.API.Controllers
                 return BadRequest(new { message = "Error to create account" });
             }
 
-            return Ok(result);
+            return Ok(new { token = result });
         }
     }
 }

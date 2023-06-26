@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Gateway.Domain.Models
+namespace Messagehub.Domain.Models
 {
     public class Entity
     {
