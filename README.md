@@ -28,3 +28,4 @@
     - API Cache
     - Docker
     - Kubernetes
+    - SignalR
