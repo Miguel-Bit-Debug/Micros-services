@@ -15,7 +15,7 @@
   - [Produtos](Product/README.md)
 
   - [Produtos Lambda](Product.Lambda/README.md)
-  - [MessageHub](MessageHub/README.md)
+  - [MessageHub](Messagehub/README.md)
 
 ## Tecnologias usadas
     - .NET 6.x
