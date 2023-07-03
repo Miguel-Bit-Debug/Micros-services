@@ -1,9 +1,9 @@
 ﻿using Messagehub.Domain.Interfaces.Repositories;
+using Messagehub.Domain.Services;
 using Messagehub.InfraData.Data;
 using Messagehub.InfraData.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -38,12 +38,13 @@ namespace Messagehub.CrossCutting.DI
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
-                    .WithOrigins("http://localhost:4200")
+                    .WithOrigins("http://localhost:4200", "https://55b3-2804-431-c7fd-2c24-d87f-9305-4269-c294.ngrok-free.app")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
 
+            builder.Services.AddSingleton<ChatService>();
             builder.Services.AddScoped<IMongoDbContext, MongoDbContext>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
