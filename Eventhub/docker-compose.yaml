@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  eventhub-app:
+    container_name: eventhub
+    image: mdmago/eventhub:dev
+    volumes:
+      - eventhub-volume:/data
+    networks:
+      - microsservices
+    env_file:
+      - ./.env
+    ports:
+      - 5020:80
+
+volumes:
+  eventhub-volume: {}
+
+networks:
+  microsservices: {}
