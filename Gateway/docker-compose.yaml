@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  gateway-app:
+    container_name: gateway
+    image: mdmago/gateway:dev
+    volumes:
+      - gateway-volume:/data
+    networks:
+      - microsservices
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - 5000:80
+
+
+volumes:
+  gateway-volume: {}
+
+networks:
+  microsservices: {}
