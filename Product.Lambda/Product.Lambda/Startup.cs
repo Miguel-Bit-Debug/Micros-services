@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Product.Domain.Interfaces;
+﻿using Product.Domain.Interfaces;
 using Product.Domain.Services;
 using Product.InfraData.Data;
 using Product.InfraData.Repositories;

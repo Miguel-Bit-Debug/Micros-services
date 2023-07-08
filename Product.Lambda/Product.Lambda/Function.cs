@@ -1,6 +1,5 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
-using Microsoft.Extensions.DependencyInjection;
 using Product.Domain.Interfaces;
 using static Amazon.Lambda.SQSEvents.SQSEvent;
 
