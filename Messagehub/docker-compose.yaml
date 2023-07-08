@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  messagehub-app:
+    container_name: messagehub
+    image: mdmago/messagehub:dev
+    volumes:
+      - messagehub-volume:/data
+    networks:
+      - microservices
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - 5010:80
+    
+
+
+volumes:
+  messagehub-volume: {}
+
+networks:
+  microservices: {}
