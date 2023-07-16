@@ -33,3 +33,4 @@
 
 ## Padrões de design | Padrões de Arquitetura | Padrões de Projeto
     - EDA (Event driven archtecture)
+    - DDD (Domain driven design)
