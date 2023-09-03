@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Product.Domain.DTOs.Request;
 using Product.Domain.ExternalService;
 using Product.Domain.Interfaces;
+using Product.Domain.Validators;
 using System.Text;
 
 namespace Product.CrossCutting.DI
@@ -35,11 +38,17 @@ namespace Product.CrossCutting.DI
                 };
             });
 
+            // Validators
+            builder.Services.AddTransient<IValidator<ProductRequestDTO>, ProductRequestValidator>();
+
+            // HTTP CLIENT
             builder.Services.AddHttpClient();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            // Services
             builder.Services.AddScoped(typeof(IEventHubExternalService<>), typeof(EventHubExternalService<>));
             builder.Services.AddScoped<IProductCacheExternalService, ProductCacheExternalService>();
+
         }
     }
 }

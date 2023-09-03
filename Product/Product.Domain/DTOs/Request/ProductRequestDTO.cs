@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Product.Domain.DTOs.Request;
 
-namespace Product.Domain.DTOs.Request
+public class ProductRequestDTO
 {
-    public class ProductRequestDTO
+    public ProductRequestDTO(string name,
+                             string description,
+                             decimal price)
     {
-        [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
-        
-        [Required(ErrorMessage = "Description is required")]
-        public string Description { get; set; }
-
-        [Required(ErrorMessage = "Price is required")]
-        public decimal Price { get; set; }
+        Name = name;
+        Description = description;
+        Price = price;
     }
+
+    public string Name { get; }
+    public string Description { get; }
+    public decimal Price { get; }
 }
