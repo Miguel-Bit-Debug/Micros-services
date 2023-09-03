@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Product.API.Extensions;
 using Product.Domain.DTOs.Request;
 using Product.Domain.Interfaces;
-using System.Security.Claims;
 
 namespace Product.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
@@ -33,7 +32,7 @@ namespace Product.API.Controllers
                 return BadRequest(ModelState.Select(x => x.Value?.Errors).ToList());
             }
 
-            var user = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
+            var user = HttpContext.User.GetUsernameFromClaim();
 
             if (user == null)
             {

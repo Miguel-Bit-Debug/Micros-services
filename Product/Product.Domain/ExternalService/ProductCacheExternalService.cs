@@ -30,7 +30,6 @@ namespace Product.Domain.ExternalService
             }
             catch (Exception ex)
             {
-
                 _logger.LogError($"Error get products - {ex.Message}");
                 throw ex;
             }
